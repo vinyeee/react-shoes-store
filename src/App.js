@@ -1,9 +1,9 @@
 import './App.css';
-import { Navbar, Nav, Container } from 'react-bootstrap'
 import { useState } from 'react'
 import { shoes_data } from './data'
 import { ShoeItem } from './components'
 import { Routes, Route, Link } from 'react-router-dom'
+import { CustomNavbar } from './components';
 function App() {
 
   let [shoes] = useState(shoes_data);
@@ -11,17 +11,8 @@ function App() {
   return (
     <div className="App">
 
-      <Navbar bg="light" data-bs-theme="light">
-        <Container>
-          <Navbar.Brand href="#home">ShoeShop</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Cart</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
-
-
+      <CustomNavbar/>
+      
       <Routes>
         <Route path = "/" element={
           <>
