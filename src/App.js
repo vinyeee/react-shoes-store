@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { shoes_data } from './data'
 import { ShoeItem } from './components'
 import { Routes, Route, Link } from 'react-router-dom'
-import { CustomNavbar } from './components';
+import { CustomNavbar, DetailPage } from './components';
 function App() {
 
   let [shoes] = useState(shoes_data);
@@ -12,7 +12,7 @@ function App() {
     <div className="App">
 
       <CustomNavbar/>
-      
+
       <Routes>
         <Route path = "/" element={
           <>
@@ -33,19 +33,7 @@ function App() {
           </>
         } />
         <Route path = "/detail" element = {
-          <div className="container">
-            <div className="row">
-              <div className="col-md-6">
-                <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
-              </div>
-              <div className="col-md-6">
-                <h4 className="pt-5">상품명</h4>
-                <p>상품설명</p>
-                <p>120000원</p>
-                <button className="btn btn-danger">주문하기</button> 
-              </div>
-            </div>
-          </div>
+          <DetailPage/>
         }/>
       </Routes>
     </div>
