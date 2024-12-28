@@ -2,12 +2,14 @@ import './App.css';
 import { useState } from 'react'
 import { shoes_data } from './data'
 import { ShoeItem } from './components'
-import { Routes, Route, Link } from 'react-router-dom'
-import { CustomNavbar, DetailPage } from './components';
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
+import { CustomNavbar } from './components';
+import { Detail } from './routes'
 function App() {
 
   let [shoes] = useState(shoes_data);
   
+
   return (
     <div className="App">
 
@@ -33,8 +35,9 @@ function App() {
           </>
         } />
         <Route path = "/detail" element = {
-          <DetailPage/>
+          <Detail/>
         }/>
+        <Route path = "*" element = {<div>Not Found 404</div>}/>
       </Routes>
     </div>
   );
