@@ -1,0 +1,1 @@
+export { ShoeItem } from './ShoeItem';
