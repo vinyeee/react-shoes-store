@@ -37,10 +37,24 @@ function App() {
         <Route path = "/detail" element = {
           <Detail/>
         }/>
-        <Route path = "*" element = {<div>Not Found 404</div>}/>
+        <Route path = "/event" element = {<Event/>}>
+          <Route path = "one" element = {<p>첫 주문시 양배추즙 서비스</p>}/>
+          <Route path = "two" element = {<p>생일 기념 쿠폰 받기기</p>}/>          
+        </Route>
+        <Route path = "*" element = {<div>Not Found 404 </div>}/>
       </Routes>
     </div>
   );
 }
 
 export default App;
+
+
+function Event(){
+  return (
+    <div>
+      <h3>오늘의 이벤트</h3>
+      <Outlet/>
+    </div>
+  )
+}
