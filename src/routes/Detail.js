@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
 
 let YellowBtn = styled.button `
     background : ${props => props.backgroundColor};
@@ -8,6 +9,17 @@ let YellowBtn = styled.button `
 `
 
 function Detail(props){
+
+    let [alertEvent , setAlertEvent ] = useState(true);
+
+    // mount, update 될 때 실행
+    useEffect(() => {
+        let a = setTimeout(() => {setAlertEvent(!alertEvent)} , 2000)
+        return () => {
+            //useEffect 실행 전에 실행됨 
+            clearTimeout(a);
+        }
+    },[]);
 
     let {id} = useParams();
     let findByIdShoes = props.shoes.find((shoe) => {
@@ -18,6 +30,10 @@ function Detail(props){
     
      return(
         <div className="container">
+            { 
+            alertEvent == true ? <div className = "alert alert-warning">2초이내 구매 시 할인</div> : null 
+            }
+
             <YellowBtn backgroundColor ="blue">버튼</YellowBtn>
             <div className="row">
                 <div className="col-md-6">
