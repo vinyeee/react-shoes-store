@@ -5,9 +5,10 @@ import { ShoeItem } from './components'
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 import { CustomNavbar } from './components';
 import { Detail } from './routes'
+import axios from 'axios';
 function App() {
 
-  let [shoes] = useState(shoes_data);
+  let [shoes, setShose] = useState(shoes_data);
 
   return (
     <div className="App">
@@ -20,17 +21,28 @@ function App() {
             <div className='main-bg' style = {{backgroundImage : `url(${process.env.PUBLIC_URL + '/img/bg.png'})`}}></div>
             <div className="container">
               <div className="row">
-                {shoes.map((shoe) => {
+                {shoes.map((shoe,i) => {
                   return (
                     <ShoeItem 
-                      title = {shoe.title}
-                      price = {shoe.price}
-                      imgUrl = {shoe.imgUrl}
-                      id = {shoe.id}
+                      shoe = {shoe}
+                      i = {i}
+                      key = {i}
                     />
                   );
                 })}
               </div>
+              <button onClick={() => {
+                axios.get('https://codingapple1.github.io/shop/data2.json')
+                .then((response)=>{
+                  //console.log(response.data);
+                  let newShoes = [...shoes, ...response.data];
+                  setShose(newShoes);
+                  console.log(newShoes);
+                })
+                .catch((error)=>{
+                  console.error('데이터 로딩 실패',error);
+                })
+              }}>더보기</button>
             </div> 
           </>
         } />
