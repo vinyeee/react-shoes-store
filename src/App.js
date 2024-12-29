@@ -8,7 +8,6 @@ import { Detail } from './routes'
 function App() {
 
   let [shoes] = useState(shoes_data);
-  
 
   return (
     <div className="App">
@@ -27,6 +26,7 @@ function App() {
                       title = {shoe.title}
                       price = {shoe.price}
                       imgUrl = {shoe.imgUrl}
+                      id = {shoe.id}
                     />
                   );
                 })}
