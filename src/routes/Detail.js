@@ -72,13 +72,14 @@ function Detail(props){
 }
 
 
-function TabContent(props){
-    if (props.tab == 0){
-        return <div>내용0</div>        
-    }else if (props.tab == 1){
-        return <div>내용1</div>
-    }else if (props.tab == 2){
-        return <div>내용2</div>
-    }
+function TabContent({tab}){
+    // if (tab == 0){
+    //     return <div>내용0</div>        
+    // }else if (tab == 1){
+    //     return <div>내용1</div>
+    // }else if (tab == 2){
+    //     return <div>내용2</div>
+    // }
+    return [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tab]
 }
 export { Detail } 
