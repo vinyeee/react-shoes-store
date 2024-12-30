@@ -37,7 +37,6 @@ function App() {
                   //console.log(response.data);
                   let newShoes = [...shoes, ...response.data];
                   setShose(newShoes);
-                  console.log(newShoes);
                 })
                 .catch((error)=>{
                   console.error('데이터 로딩 실패',error);
@@ -47,7 +46,6 @@ function App() {
           </>
         } />
         <Route path = "/detail/:id" element = {<Detail shoes = {shoes}/>}/>
-
         <Route path = "/event" element = {<Event/>}>
           <Route path = "one" element = {<p>첫 주문시 양배추즙 서비스</p>}/>
           <Route path = "two" element = {<p>생일 기념 쿠폰 받기기</p>}/>          
