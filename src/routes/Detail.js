@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
 import styled from 'styled-components';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Nav } from 'react-bootstrap';
+import { DetailContext } from './../App.js';
 
 let YellowBtn = styled.button `
     background : ${props => props.backgroundcolor};
@@ -18,6 +19,8 @@ function Detail(props){
      
     let [alertEvent , setAlertEvent ] = useState(true);
     let [tab , setTab] = useState(0);
+
+    let {stock} = useContext(DetailContext);
 
 
     // mount, update 될 때 실행
@@ -52,27 +55,30 @@ function Detail(props){
                 <button className="btn btn-danger">주문하기</button> 
             </div>
             </div>
+            
             <Nav variant="tabs"  defaultActiveKey="link0">
                 <Nav.Item>
                     <Nav.Link eventKey="link0">버튼0</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="link1" onClick = {() => {setTab(1)}} >버튼1</Nav.Link>
+                    <Nav.Link eventKey="link1" onClick = {() => {setTab(1)}} >버튼1
+
+                    </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                     <Nav.Link eventKey="link2" onClick = {() => {setTab(2)}}>버튼2</Nav.Link>
                 </Nav.Item>
             </Nav>
             <TabContent tab = {tab}/>
+
         </div>
-        
         
     );
     
 }
 
 
-function TabContent({tab}){
+function TabContent({tab, shoes}){
     // if (tab == 0){
     //     return <div>내용0</div>        
     // }else if (tab == 1){
@@ -80,6 +86,20 @@ function TabContent({tab}){
     // }else if (tab == 2){
     //     return <div>내용2</div>
     // }
-    return [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tab]
+
+    
+    let [fade, setFade] = useState('')
+    let {stock} = useContext(DetailContext); 
+    useEffect(() => {
+        let a = setTimeout(() => {setFade('end')}, 10)
+        return () => {
+            setFade('')
+            clearTimeout(a)
+        }
+    },[tab])
+
+    return (<div className = {`start ${fade}`}>
+        { [<div>내용0{stock[1]}</div>, <div>내용1</div>, <div>내용2</div>][tab] }
+    </div>);
 }
 export { Detail } 
