@@ -10,7 +10,7 @@ function CustomNavbar(){
                 <Navbar.Brand href="#home">ShoeShop</Navbar.Brand>
                     <Nav className="me-auto">
                     <Nav.Link onClick={()=>{navigate('/')}}>Home</Nav.Link>
-                    <Nav.Link onClick={()=>{navigate('/detail')}}>Cart</Nav.Link>
+                    <Nav.Link onClick={()=>{navigate('/cart')}}>Cart</Nav.Link>
                     </Nav>
             </Container>
         </Navbar>

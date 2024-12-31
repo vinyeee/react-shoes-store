@@ -4,7 +4,7 @@ import { shoes_data } from './data'
 import { ShoeItem } from './components'
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 import { CustomNavbar } from './components';
-import { Detail } from './routes'
+import { Detail , Cart} from './routes'
 import axios from 'axios';
 
 export let DetailContext = createContext();
@@ -54,10 +54,13 @@ function App() {
             <Detail shoes = {shoes}/>
           </DetailContext.Provider>          
           }/>
-        <Route path = "/event" element = {<Event/>}>
+        <Route path = "/cart" element = {<Cart/>}>
+
+        </Route>
+        {/* <Route path = "/event" element = {<Event/>}>
           <Route path = "one" element = {<p>첫 주문시 양배추즙 서비스</p>}/>
           <Route path = "two" element = {<p>생일 기념 쿠폰 받기기</p>}/>          
-        </Route>
+        </Route> */}
         {/* <Route path = "*" element = {<div>Not Found 404 </div>}/> */}
       </Routes>
     </div>
