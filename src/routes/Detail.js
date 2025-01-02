@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import React, { useContext, useEffect, useState } from 'react';
 import { Nav } from 'react-bootstrap';
 import { DetailContext } from './../App.js';
+import { addItem } from './../store'
+import { useDispatch, useSelector } from 'react-redux';
 
 let YellowBtn = styled.button `
     background : ${props => props.backgroundcolor};
@@ -21,7 +23,7 @@ function Detail(props){
     let [tab , setTab] = useState(0);
 
     let {stock} = useContext(DetailContext);
-
+    let dispatch = useDispatch();
 
     // mount, update 될 때 실행
     useEffect(() => {
@@ -52,7 +54,13 @@ function Detail(props){
                 <h4 className="pt-5">{findByIdShoes.title}</h4>
                 <p>{findByIdShoes.content}</p>
                 <p>{findByIdShoes.price}원      </p>
-                <button className="btn btn-danger" onClick = {() => { }}>주문하기</button> 
+                <button className="btn btn-danger" onClick = {() => { 
+                    dispatch(addItem({
+                        id: findByIdShoes.id,
+                        name: findByIdShoes.title,
+                        count: 1 // 초기 수량 설정
+                      }))
+                    }}>주문하기</button> 
             </div>
             </div>
             

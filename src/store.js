@@ -20,8 +20,8 @@ let cart = createSlice({
         let i = state.findIndex((item) => { return item.id === action.payload})
         state[i].count += 1;
       }, 
-      addItem(){
-        return 
+      addItem(state, action){
+        state.push(action.payload)
       }      
     }
 })
