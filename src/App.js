@@ -1,5 +1,5 @@
 import './App.css';
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import { shoes_data } from './data'
 import { ShoeItem } from './components'
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
@@ -14,6 +14,14 @@ function App() {
   let [shoes, setShose] = useState(shoes_data);
   let [stock, setStock] = useState([10,11,12]);
 
+  // 최근 본 상품 담기
+  /** 1. 누군가 Detail 페이지에 접속하면 
+   *  2. 그 페이지의 상품id를 가져와서
+   *  3. localStorage에  잠시 보관  */
+  
+  useEffect(()=> {
+    localStorage.setItem('watched', JSON.stringify([]));
+  })
   return (
     <div className="App">
 

@@ -25,7 +25,17 @@ function Detail(props){
     let {stock} = useContext(DetailContext);
     let dispatch = useDispatch();
 
+
     // mount, update 될 때 실행
+    useEffect(() => {
+        let watchedItems = localStorage.getItem('watched');
+        watchedItems = JSON.parse(watchedItems)
+        watchedItems.push(findByIdShoes.id)
+        watchedItems = new Set(watchedItems)
+        watchedItems = Array.from(watchedItems)  // Set -> Array
+        localStorage.setItem('watched',JSON.stringify(watchedItems))
+    })
+
     useEffect(() => {
         let a =setTimeout(() => {setAlertEvent(!alertEvent)} , 2000)
         return () => {
@@ -33,9 +43,6 @@ function Detail(props){
             clearTimeout(a);
         }
     },[]);
-
-    
-    
      
      // url 파라미터만 단독으로 썼을땐 자료 순서가 변경되면 상세페이지도 고장나버림 
      // url 파라미터로 받은 id 와 props의 shoes의 고유id 가 같은 객체를 반환환 

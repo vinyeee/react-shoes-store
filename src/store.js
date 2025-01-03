@@ -9,6 +9,7 @@ let stock = createSlice({
     initialState : [10,11,12]
 })
 
+// 삭제도 만들어보기 
 let cart = createSlice({
     name : 'cart',
     initialState : [
